@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <article id="objekt">
+      <h3></h3>
+      <p>Type:</p>
+      <p>Levested:</p>
+      <img src="" alt="" />
+    </article>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", start);
+    console.log("DOMContentLoaded");
+
+    let dyr = [
+      {
+        navn: "gris",
+        type: "pattedyr",
+        levested: "svinefarme",
+        billede: "http://mabe-kea.dk/E19/pics/pig.png",
+      },
+      {
+        navn: "frø",
+        type: "amfible",
+        levested: "søer",
+        billede: "http://mabe-kea.dk/E19/pics/frog.png",
+      },
+      {
+        navn: "ræv",
+        type: "pattedyr",
+        levested: "skove",
+        billede: "http://mabe-kea.dk/E19/pics/fox.png",
+      },
+      {
+        navn: "sild",
+        type: "fisk",
+        levested: "havet",
+        billede: "http://mabe-kea.dk/E19/pics/sild.png",
+      },
+      {
+        navn: "krokodille",
+        type: "krybdyr",
+        levested: "australien",
+        billede: "http://mabe-kea.dk/E19/kroko/pig.png",
+      },
+    ];
+    console.log(dyr);
+
+    function start() {
+      const objekt = {
+        dyr: "gris",
+        type: "pattedyr",
+        billede: "http://mabe-kea.dk/E19/pics/pig.png",
+        sted: "svinefarme",
+      };
+      console.log(objekt);
+
+      const destination = document.querySelector("#objekt");
+
+      destination.querySelector("h3").textContent = objekt.dyr;
+      destination.querySelector("article p").textContent += " " + objekt.type;
+      destination.querySelector("article p:nth-of-type(2)").textContent +=
+        " " + objekt.sted;
+      destination.querySelector("img").src = objekt.billede;
+    }
+  </script>
+</html>
