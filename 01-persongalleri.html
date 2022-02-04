@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+      }
+
+      article {
+        border: 1px black solid;
+        padding: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <template>
+        <article>
+          <h2></h2>
+          <h4></h4>
+          <p></p>
+        </article>
+      </template>
+    </section>
+
+    <script>
+      //fastlæg variabler som skal bruges senere til at fylde indhold ind i
+      const container = document.querySelector("section");
+      const template = document.querySelector("template");
+      //json fil, og key til fil
+      const fil = "https://tema7-7e63.restdb.io/rest/medlemmer";
+      const key = "61fcf7f63f215f310a37be74";
+      const options = { headers: { "x-apikey": key } };
+
+      async function hentData() {
+        const resultat = await fetch(fil, options);
+        const json = await resultat.json();
+        vis(json);
+      }
+
+      function vis(personliste) {
+        console.log(personliste);
+        personliste.forEach((person) => {
+          const klon = template.cloneNode(true).content;
+          klon.querySelector(
+            "h2"
+          ).textContent = `${person.fornavn} ${person.efternavn}`;
+          klon.querySelector(
+            "h4"
+          ).textContent = `Her kommer et foto: ${person.foto}`;
+          klon.querySelector("p").textContent = person.email;
+
+          container.appendChild(klon);
+        });
+      }
+
+      hentData(fil);
+    </script>
+  </body>
+</html>

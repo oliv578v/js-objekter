@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="dyre-container"></section>
+    <template>
+      <article id="objekt">
+        <h3></h3>
+        <img src="" alt="" />
+        <p class="type"></p>
+        <p class="levested"></p>
+      </article>
+    </template>
+
+    <script>
+      //Laver konstanter for at have noget at komme mine elementer ind i senere
+      const container = document.querySelector(".dyre-container");
+      const dyreTemplate = document.querySelector("template");
+
+      //fastsæt json fil i variabel
+      const fil = "alleDyr.json";
+
+      //Asynkron funktion, der i parametret viser hvad den skal hente
+      async function hentData(fil) {
+        //inde i funktionen fastsætter mine variabler hvad fetchen skal
+        //se noter for mere info.
+        const resultat = await fetch(fil);
+        const json = await resultat.json();
+        //Nå den er færdig, skal den kalde funktionen; vis og benytte den json data den har hentet
+        vis(json);
+      }
+
+      //For hvert element i mit array, vil jeg lave en klon.
+      //derfor, variablen
+      function vis(objekt) {
+        objekt.forEach((element) => {
+          let klon = dyreTemplate.cloneNode(true).content;
+          klon.querySelector("h3").textContent = `Dyr:${element.navn}`;
+          klon.querySelector("img").src = element.billede;
+          klon.querySelector(".type").textContent = `Type:  ${element.type}`;
+          klon.querySelector(
+            ".levested"
+          ).textContent = `Lever i: ${element.levested}`;
+          //placér den tilbage i DOM'en, ved at give container et child: klon(erne)
+          container.appendChild(klon);
+        });
+      }
+
+      //kald til sidst den asynkrone funktion; hentdata, og vælg fil.
+      hentData(fil);
+    </script>
+  </body>
+</html>
