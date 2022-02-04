@@ -1,0 +1,17 @@
+[
+  {
+    "marke": "Volvo",
+    "model": "amazon",
+    "udstyr": ["blinklys", "læderrat", "vinduesvisere"]
+  },
+  {
+    "marke": "VW",
+    "model": "Polo",
+    "udstyr": ["sædevarme", "gps-tracker", "caleche"]
+  },
+  {
+    "marke": "Tesla",
+    "model": "S-model",
+    "udstyr": ["gps", "aircon", "soltag"]
+  }
+]
