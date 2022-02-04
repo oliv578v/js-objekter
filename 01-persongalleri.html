@@ -17,6 +17,11 @@
         border: 1px black solid;
         padding: 0.5rem;
       }
+
+      img {
+        max-width: 100%;
+        object-fit: cover;
+      }
     </style>
   </head>
   <body>
@@ -26,6 +31,7 @@
           <h2></h2>
           <h4></h4>
           <p></p>
+          <img src="" alt="" />
         </article>
       </template>
     </section>
@@ -52,9 +58,7 @@
           klon.querySelector(
             "h2"
           ).textContent = `${person.fornavn} ${person.efternavn}`;
-          klon.querySelector(
-            "h4"
-          ).textContent = `Her kommer et foto: ${person.foto}`;
+          klon.querySelector("img").src = "/Billeder/" + person.profilbillede;
           klon.querySelector("p").textContent = person.email;
 
           container.appendChild(klon);
