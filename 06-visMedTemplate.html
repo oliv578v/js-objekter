@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section id="liste"></section>
+    <template>
+      <article>
+        <h3></h3>
+        <p id="type"></p>
+        <p id="levested"></p>
+        <img src="" alt="" />
+      </article>
+    </template>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", visDyr);
+    console.log("DOMContentLoaded");
+
+    let dyreliste = [
+      {
+        navn: "gris",
+        type: "pattedyr",
+        levested: "svinefarme",
+        billede: "http://mabe-kea.dk/E19/pics/pig.png",
+      },
+      {
+        navn: "frø",
+        type: "amfible",
+        levested: "søer",
+        billede: "http://mabe-kea.dk/E19/pics/frog.png",
+      },
+      {
+        navn: "ræv",
+        type: "pattedyr",
+        levested: "skove",
+        billede: "http://mabe-kea.dk/E19/pics/fox.png",
+      },
+      {
+        navn: "sild",
+        type: "fisk",
+        levested: "havet",
+        billede: "http://mabe-kea.dk/E19/pics/sild.png",
+      },
+      {
+        navn: "krokodille",
+        type: "krybdyr",
+        levested: "australien",
+        billede: "http://mabe-kea.dk/E19/kroko/pig.png",
+      },
+    ];
+    console.log(dyreliste);
+
+    function visDyr() {
+      const container = document.querySelector("#liste");
+      const dyreTemplate = document.querySelector("template");
+
+      dyreliste.forEach((dyr) => {
+        let klon = dyreTemplate.cloneNode(true).content;
+        klon.querySelector("h3").textContent = `Dyr: ${dyr.navn}`;
+        klon.querySelector("img").src = dyr.billede;
+        klon.querySelector("#type").textContent = `Type: ${dyr.type}`;
+        klon.querySelector(
+          "#levested"
+        ).textContent = `Levested: ${dyr.levested}`;
+        container.appendChild(klon);
+      });
+    }
+  </script>
+</html>
